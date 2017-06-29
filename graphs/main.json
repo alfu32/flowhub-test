@@ -24,7 +24,7 @@
             "component": "core/RunInterval",
             "metadata": {
                 "label": "RunInterval",
-                "x": 0,
+                "x": -216,
                 "y": -180,
                 "width": 72,
                 "height": 72
@@ -34,8 +34,38 @@
             "component": "math/Accumulate",
             "metadata": {
                 "label": "Accumulate",
+                "x": 0,
+                "y": -216,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "flow/Gate_s4u2z": {
+            "component": "flow/Gate",
+            "metadata": {
+                "label": "Gate",
                 "x": 144,
                 "y": -180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "math/Modulo_a9sr2": {
+            "component": "math/Modulo",
+            "metadata": {
+                "label": "Modulo",
+                "x": -72,
+                "y": -108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "math/Compare_jsbbv": {
+            "component": "math/Compare",
+            "metadata": {
+                "label": "Compare",
+                "x": 36,
+                "y": -108,
                 "width": 72,
                 "height": 72
             }
@@ -48,11 +78,57 @@
                 "port": "out"
             },
             "tgt": {
+                "process": "math/Modulo_a9sr2",
+                "port": "dividend"
+            },
+            "metadata": {
+                "route": 0
+            }
+        },
+        {
+            "src": {
+                "process": "math/Modulo_a9sr2",
+                "port": "remainder"
+            },
+            "tgt": {
+                "process": "math/Compare_jsbbv",
+                "port": "value"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "math/Compare_jsbbv",
+                "port": "pass"
+            },
+            "tgt": {
+                "process": "flow/Gate_s4u2z",
+                "port": "open"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "math/Compare_jsbbv",
+                "port": "fail"
+            },
+            "tgt": {
+                "process": "flow/Gate_s4u2z",
+                "port": "close"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "core/RunInterval_qyy54",
+                "port": "out"
+            },
+            "tgt": {
                 "process": "math/Accumulate_8gisy",
                 "port": "in"
             },
             "metadata": {
-                "route": null
+                "route": 0
             }
         },
         {
@@ -61,10 +137,25 @@
                 "port": "out"
             },
             "tgt": {
+                "process": "flow/Gate_s4u2z",
+                "port": "in"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "flow/Gate_s4u2z",
+                "port": "out"
+            },
+            "tgt": {
                 "process": "core/Output_9xrdz",
                 "port": "in"
             },
-            "metadata": {}
+            "metadata": {
+                "route": null
+            }
         },
         {
             "data": 1000,
@@ -74,10 +165,24 @@
             }
         },
         {
+            "data": 2,
+            "tgt": {
+                "process": "math/Modulo_a9sr2",
+                "port": "divisor"
+            }
+        },
+        {
             "data": 1,
             "tgt": {
-                "process": "math/Accumulate_8gisy",
-                "port": "in"
+                "process": "math/Compare_jsbbv",
+                "port": "comparison"
+            }
+        },
+        {
+            "data": "==",
+            "tgt": {
+                "process": "math/Compare_jsbbv",
+                "port": "operator"
             }
         }
     ]
