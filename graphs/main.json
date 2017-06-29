@@ -9,6 +9,13 @@
     "inports": {},
     "outports": {},
     "groups": [],
-    "processes": {},
+    "processes": {
+        "timer":{
+            "component": "timer",
+              "metadata": {
+                "interval":1000
+              }
+        }
+    },
     "connections": []
 }
