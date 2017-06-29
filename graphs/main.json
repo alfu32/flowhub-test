@@ -10,38 +10,75 @@
     "outports": {},
     "groups": [],
     "processes": {
-        "timer": {
-            "component": "timer",
+        "core/Output_9xrdz": {
+            "component": "core/Output",
             "metadata": {
-                "interval": 1000,
-                "x": -36,
-                "y": 0,
+                "label": "Output",
+                "x": 288,
+                "y": -180,
                 "width": 72,
-                "height": 72,
-                "label": "timer"
+                "height": 72
             }
         },
-        "printer": {
-            "component": "printer",
+        "core/RunInterval_qyy54": {
+            "component": "core/RunInterval",
             "metadata": {
-                "x": 144,
-                "y": 0,
+                "label": "RunInterval",
+                "x": 0,
+                "y": -180,
                 "width": 72,
-                "height": 72,
-                "label": "printer"
+                "height": 72
+            }
+        },
+        "math/Accumulate_8gisy": {
+            "component": "math/Accumulate",
+            "metadata": {
+                "label": "Accumulate",
+                "x": 144,
+                "y": -180,
+                "width": 72,
+                "height": 72
             }
         }
     },
     "connections": [
-         {
-          "src": {
-            "process": "timer",
-            "port": "out"
-          },
-          "tgt": {
-            "process": "printer",
-            "port": "in"
-          }
+        {
+            "src": {
+                "process": "core/RunInterval_qyy54",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "math/Accumulate_8gisy",
+                "port": "in"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "math/Accumulate_8gisy",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/Output_9xrdz",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "data": 1000,
+            "tgt": {
+                "process": "core/RunInterval_qyy54",
+                "port": "interval"
+            }
+        },
+        {
+            "data": 1,
+            "tgt": {
+                "process": "math/Accumulate_8gisy",
+                "port": "in"
+            }
         }
     ]
 }
