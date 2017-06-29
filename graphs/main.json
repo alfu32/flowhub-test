@@ -10,15 +10,26 @@
     "outports": {},
     "groups": [],
     "processes": {
-        "timer":{
+        "timer": {
             "component": "timer",
             "metadata": {
-               "interval":1000
+                "interval": 1000,
+                "x": -36,
+                "y": 0,
+                "width": 72,
+                "height": 72,
+                "label": "timer"
             }
         },
-        "printer":{
+        "printer": {
             "component": "printer",
-            "metadata": {}
+            "metadata": {
+                "x": 144,
+                "y": 0,
+                "width": 72,
+                "height": 72,
+                "label": "printer"
+            }
         }
     },
     "connections": []
