@@ -32,5 +32,16 @@
             }
         }
     },
-    "connections": []
+    "connections": [
+         {
+          "src": {
+            "process": "timer",
+            "port": "out"
+          },
+          "tgt": {
+            "process": "printer",
+            "port": "in"
+          }
+        }
+    ]
 }
